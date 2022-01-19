@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lh.com.mapper.CartMapper">
+    <select id="getbook" parameterType="int" resultType="lh.com.pojo.Book">
+        select * from book where id=#{id}
+    </select>
+    <select id="haveItem" parameterType="java.util.Map" resultType="lh.com.pojo.CartItem">
+        select * from user_cart where id=#{id} and order_id=#{order_id}
+    </select>
+    <update id="updateItem" parameterType="lh.com.pojo.CartItem">
+        update user_cart set total_price=#{total_price},count=#{count} where id=#{id} and order_id=#{order_id}
+    </update>
+    <insert id="addItem" parameterType="lh.com.pojo.CartItem">
+        insert into user_cart values(#{id},#{name},#{count},#{price},#{total_price},#{order_id})
+    </insert>
+    <select id="itemList" parameterType="String" resultType="lh.com.pojo.CartItem">
+        select * from user_cart where order_id=#{order_id}
+    </select>
+    <delete id="itemDelete" parameterType="int">
+        delete from user_cart where id=#{id}
+    </delete>
+    <delete id="allDelete" parameterType="string">
+        delete from user_cart where order_id=#{order_id}
+    </delete>
+    <insert id="addOrder" parameterType="lh.com.pojo.Order">
+        insert into user_order values(#{id},#{date},#{status},#{user_id})
+    </insert>
+    <delete id="updateOrder" parameterType="string">
+        update user_order set status="已支付" where id=#{order_id}
+    </delete>
+</mapper>

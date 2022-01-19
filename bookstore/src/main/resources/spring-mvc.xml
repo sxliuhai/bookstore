@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                               http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+        <!--为返回的页面设置前后缀-->
+        <bean id="resourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            <property name="prefix" value="/resources/pages/"></property>
+            <property name="suffix" value=".jsp"></property>
+        </bean>
+        <!--扫描注解-->
+        <context:component-scan base-package="lh.com"></context:component-scan>
+        <mvc:annotation-driven></mvc:annotation-driven>
+        <mvc:default-servlet-handler></mvc:default-servlet-handler>
+
+        <!--设置拦截器-->
+        <mvc:interceptors>
+            <mvc:interceptor>
+                <!--拦截所有资源-->
+                <mvc:mapping path="/**"/>
+                <!--设置需要放行的资源-->
+                <mvc:exclude-mapping path="/resources/static/css/*"></mvc:exclude-mapping>
+                <mvc:exclude-mapping path="/resources/static/img/*"></mvc:exclude-mapping>
+                <mvc:exclude-mapping path="/resources/static/script/*"></mvc:exclude-mapping>
+                <mvc:exclude-mapping path="/user/login"></mvc:exclude-mapping>
+                <mvc:exclude-mapping path="/user/regist"></mvc:exclude-mapping>
+                <mvc:exclude-mapping path="/resources/pages/user/regist.jsp"></mvc:exclude-mapping>
+                <bean class="lh.com.interceptor.Interceptor"></bean>
+            </mvc:interceptor>
+        </mvc:interceptors>
+</beans>

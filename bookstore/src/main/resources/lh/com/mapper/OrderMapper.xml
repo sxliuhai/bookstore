@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lh.com.mapper.OrderMapper">
+    <select id="listOrder" parameterType="int" resultType="lh.com.pojo.Order">
+        select * from user_order where user_id=#{id};
+    </select>
+    <select id="listCart" parameterType="string" resultType="lh.com.pojo.CartItem">
+        select * from user_cart where order_id=#{order_id}
+    </select>
+</mapper>
