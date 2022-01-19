@@ -12,6 +12,13 @@ create table book(
 `sales` int,
 `stock` int
 );
+create table user_order(
+`id` varchar(50) primary key,
+`date` Date,
+`status` varchar(20),
+`user_id` int,
+foreign key(`user_id`) references user(`id`)
+);
 create table user_cart(
 `id` int,
 `name` varchar(20),
@@ -21,13 +28,6 @@ create table user_cart(
 `order_id` varchar(50),
 foreign key(`order_id`) references user_order(`id`),
 foreign key(`id`) references book(`id`));
-create table user_order(
-`id` varchar(50) primary key,
-`date` Date,
-`status` varchar(20),
-`user_id` int,
-foreign key(`user_id`) references user(`id`)
-);
 insert into book values(null,"c语言","张三",20,200,300);
 insert into book values(null,"c++","张三",20,200,300);
 insert into book values(null,"java","张三",20,200,300);
