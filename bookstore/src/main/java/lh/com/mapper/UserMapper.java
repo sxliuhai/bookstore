@@ -7,4 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     void saveUser(User user);
     User check(User user);
+    User haveUser(User user);
 }
