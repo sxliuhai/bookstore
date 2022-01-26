@@ -7,4 +7,7 @@
     <select id="check" parameterType="lh.com.pojo.User" resultType="lh.com.pojo.User">
         select * from user where username=#{username} and password=#{password}
     </select>
+    <select id="haveUser" parameterType="lh.com.pojo.User" resultType="lh.com.pojo.User">
+        select * from user where username=#{username}
+    </select>
 </mapper>
