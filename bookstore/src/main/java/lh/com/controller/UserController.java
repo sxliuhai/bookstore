@@ -34,8 +34,14 @@ public class UserController {
             return "user/login";
     }
     @RequestMapping("/regist")
-    public String regist(User user){
+    public String regist(User user,HttpServletRequest httpServletRequest){
+        User user1 = userService.haveUser(user);
+        if(user1!=null){
+            httpServletRequest.setAttribute("msg","用户名已存在");
+        return "user/regist";}
+        else{
         userService.saveUser(user);
-        return"user/login";
+            httpServletRequest.setAttribute("msg","注册成功");
+        return"user/login";}
     }
 }
