@@ -18,4 +18,8 @@ UserMapper userMapper;
     public void saveUser(User user) {
         userMapper.saveUser(user);
     }
+      @Override
+    public User haveUser(User user) {
+       return userMapper.haveUser(user);
+    }
 }
