@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"  isELIgnored="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -84,6 +85,9 @@
 							<div class="tit">
 								<h1>注册会员</h1>
 								<span class="errorMsg">
+									<c:if test="${not empty requestScope.msg}">
+										${requestScope.msg}
+									</c:if>
 								</span>
 							</div>
 							<div class="form">
